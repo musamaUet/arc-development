@@ -13,12 +13,47 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          {[...new Array(12)]
-            .map(
-              () =>
-                `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`
-            )
-            .join('\n')}
+          <Route exact path='/' element={<h1>This is home component</h1>} />
+          <Route
+            exact
+            path='/services'
+            element={<div>This is services component</div>}
+          />
+          <Route
+            exact
+            path='/customsoftware'
+            element={<div>This is custom software component</div>}
+          />
+          <Route
+            exact
+            path='/mobileapps'
+            element={<div>This is mobileapps component</div>}
+          />
+          <Route
+            exact
+            path='/websites'
+            element={<div>This is website component</div>}
+          />
+          <Route
+            exact
+            path='/revolution'
+            element={<div>This is revolution component</div>}
+          />
+          <Route
+            exact
+            path='/about'
+            element={<div>This is about component</div>}
+          />
+          <Route
+            exact
+            path='/contact'
+            element={<div>This is contact component</div>}
+          />
+          <Route
+            exact
+            path='/estimate'
+            element={<div>This is estimate component</div>}
+          />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
