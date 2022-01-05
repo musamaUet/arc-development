@@ -119,10 +119,8 @@ function Header(props) {
   const location = useLocation();
   const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-  const [value, setValue] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
   const [openMenu, setOpenMenu] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
   const [openDrawer, setOpenDrawer] = useState(false);
 
   const menuOptions = [
@@ -169,10 +167,13 @@ function Header(props) {
     [...menuOptions, ...routes].forEach((route) => {
       switch (location.pathname) {
         case `${route.link}`:
-          if (value !== route.activeIndex) {
-            setValue(route.activeIndex);
-            if (route.selectedIndex && route.selectedIndex !== selectedIndex) {
-              setSelectedIndex(route.selectedIndex);
+          if (props.value !== route.activeIndex) {
+            props.setValue(route.activeIndex);
+            if (
+              route.selectedIndex &&
+              route.selectedIndex !== props.selectedIndex
+            ) {
+              props.setSelectedIndex(route.selectedIndex);
             }
           }
           break;
@@ -181,10 +182,10 @@ function Header(props) {
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value, menuOptions, selectedIndex, routes]);
+  }, [props.value, menuOptions, props.selectedIndex, routes]);
 
   const handleChange = (e, value) => {
-    setValue(value);
+    props.setValue(value);
   };
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
@@ -197,13 +198,13 @@ function Header(props) {
   const handleMenuItemClick = (event, index) => {
     setAnchorEl(null);
     setOpenMenu(false);
-    setSelectedIndex(index);
+    props.setSelectedIndex(index);
   };
 
   const tabs = (
     <React.Fragment>
       <Tabs
-        value={value}
+        value={props.value}
         onChange={handleChange}
         className={classes.tabContainer}
         indicatorColor='primary'
@@ -241,10 +242,10 @@ function Header(props) {
             component={Link}
             to={option.link}
             classes={{ root: classes.menuItem }}
-            selected={selectedIndex === index && value === 1}
+            selected={props.selectedIndex === index && props.value === 1}
             onClick={(event) => {
               handleMenuItemClick(event, index);
-              setValue(1);
+              props.setValue(1);
               handleClose();
             }}
           >
@@ -274,11 +275,11 @@ function Header(props) {
               button
               onClick={() => {
                 setOpenDrawer(false);
-                setValue(route.activeIndex);
+                props.setValue(route.activeIndex);
               }}
               component={Link}
               to={route.link}
-              selected={value === route.activeIndex}
+              selected={props.value === route.activeIndex}
               classes={{ selected: classes.drawerItemSelected }}
             >
               <ListItemText disableTypography className={classes.drawerItem}>
@@ -291,12 +292,12 @@ function Header(props) {
             button
             onClick={() => {
               setOpenDrawer(false);
-              setValue(5);
+              props.setValue(5);
             }}
             component={Link}
             to='/estimate'
             className={classes.drawerItemEstimate}
-            selected={value === 5}
+            selected={props.value === 5}
             classes={{
               root: classes.drawerItemEstimate,
               selected: classes.drawerItemSelected,
@@ -327,7 +328,7 @@ function Header(props) {
               disableRipple
               component={Link}
               to='/'
-              onClick={() => setValue(0)}
+              onClick={() => props.setValue(0)}
             >
               <img alt='company logo' className={classes.logo} src={logo} />
             </Button>
