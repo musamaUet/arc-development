@@ -3,6 +3,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import Header from './ui/Header';
 import Footer from './ui/Footer';
 import theme from './ui/Theme';
+import LandingPage from './LandingPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -20,15 +21,7 @@ function App() {
           setSelectedIndex={setSelectedIndex}
         />
         <Routes>
-          <Route
-            exact
-            path='/'
-            element={
-              <div style={{ height: '2000px' }}>
-                <h1>This is home component</h1>
-              </div>
-            }
-          />
+          <Route exact path='/' element={<LandingPage />} />
           <Route
             exact
             path='/services'

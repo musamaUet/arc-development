@@ -25,5 +25,18 @@ export default createTheme({
       textTransform: 'none',
       color: 'white',
     },
+    h2: {
+      fontFamily: 'Raleway',
+      fontWeight: 700,
+      fontSize: '2.5rem',
+      color: `${arcBlue}`,
+      lineHeight: 1.5,
+    },
+    h3: {
+      fontFamily: 'Pacifico',
+      fontSize: '2.5rem',
+      color: `${arcBlue}`,
+      lineHeight: 1.5,
+    },
   },
 });
